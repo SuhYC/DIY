@@ -16,5 +16,5 @@ UseCount는 0이 되어 데이터는 delete되었지만 Weak Pointer는 아직 �
 그에 대한 처리를 해주어야된다는 것
 
 ## 보충할 점
-- operator[]에 대한 처리.
+- operator[]에 대한 처리. - deleter개념을 추가해보자.
 - thread-safe하게 만들어보기 (그냥 lock_guard 남발하면 성능에 좋지 않을 것 같으니 atomic을 사용할 수 있다면..)
