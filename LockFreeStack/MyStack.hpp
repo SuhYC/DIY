@@ -23,7 +23,7 @@ public:
 
     void Init(T data_)
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 20; i++)
         {
             Node* tmp = new Node(data_);
             push(tmp);

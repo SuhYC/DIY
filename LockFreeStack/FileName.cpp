@@ -4,27 +4,23 @@
 #include "MyStack.hpp"
 #include <ctime>
 
-const int THWORK = 1000000;
+const int THWORK = 100000;
 const int THNUM = 10;
 
 void threadWork(MyStack<int>& st)
 {
-    for (int i = 0; i < THWORK;)
+    for (int i = 0; i < THWORK; i++)
     {
         MyStack<int>::Node* tmp = st.pop();
-        if (tmp != nullptr)
+
+        int job = 0;
+
+        while (job++ < 100)
         {
-            i++;
-
-            int job = 0;
-
-            while (job++ < 100)
-            {
-
-            }
-
-            st.push(tmp);
+            // for same process with allocation case.
         }
+
+        st.push(tmp);
     }
 
     return;
@@ -40,7 +36,7 @@ void threadWorkMalloc()
 
         while (job++ < 100)
         {
-
+            // for prevent cache hit on allocation.
         }
 
         delete tmp;
@@ -93,7 +89,7 @@ int main() {
     v.clear();
     v.reserve(THNUM);
 
-    //------------malloc-----
+    //------------allocation check-----
 
     start = clock();
 
