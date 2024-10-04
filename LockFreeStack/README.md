@@ -8,3 +8,5 @@
 3. ```lock-free stack```에 노드를 반납한다. (동적할당의 경우는 그냥 노드를 해제한다.)
 
 위 과정을 100000회 씩 10스레드에서 실행한다.
+
+![이미지](https://github.com/SuhYC/DIY/blob/main/LockFreeStack/a.png)
