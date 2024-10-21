@@ -1,0 +1,5 @@
+﻿  RingBuffer.hpp
+  main.cpp
+  코드를 생성하고 있습니다...
+C:\Users\psyc\source\repos\RingBuffer\RingBuffer\RingBuffer.hpp(45,1): warning C4715: 'RingBuffer::Init': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  RingBuffer.vcxproj -> C:\Users\psyc\source\repos\RingBuffer\x64\Debug\RingBuffer.exe
