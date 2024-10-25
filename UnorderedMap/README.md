@@ -1,7 +1,5 @@
-# Unordered_Map
-# Unordered_Set
-# HashMap
-# HashSet
+# Unordered_Map, Unordered_Set
+### HashMap, HashSet
 
 해시테이블을 이용한 자료구조. <br/>
 해시함수를 통해 만들어낸 해시값을 바탕으로 버킷을 참조하여 데이터를 찾는다. <br/>
