@@ -22,7 +22,7 @@ int main()
 	std::cout << slib.GetSize() << '/' << slib.GetCap() << '\n'; // 용량 4/21
 
 	// 8바이트 실수
-	ret = slib.Push(1.0);
+	ret = slib.Push(1.5);
 	if (!ret)
 	{
 		std::cerr << "main : 8바이트 부동소수점 데이터 삽입 실패.\n";

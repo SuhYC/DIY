@@ -91,6 +91,55 @@ public:
 		return true;
 	}
 
+	template <typename T>
+	typename std::enable_if<
+		std::is_same<T, uint16_t>::value ||
+		std::is_same<T, uint32_t>::value ||
+		std::is_same<T, uint64_t>::value ||
+		std::is_same<T, int16_t>::value ||
+		std::is_same<T, int32_t>::value ||
+		std::is_same<T, int64_t>::value ||
+		std::is_same<T, float>::value ||
+		std::is_same<T, double>::value ||
+		std::is_same<T, std::string>::value,
+		bool>::type
+		Push(const T& rhs_)
+	{
+		if (size + sizeof(rhs_) > capacity)
+		{
+			return false;
+		}
+
+		CopyMemory(data + size, &rhs_, sizeof(rhs_));
+		size += sizeof(rhs_);
+		return true;
+	}
+
+	/// <summary>
+	/// 문자열은 문자열의 바이트크기를 먼저 삽입한 후
+	/// 문자열을 삽입한다.
+	/// </summary>
+	/// <param name="rhs_"></param>
+	/// <returns></returns>
+	template <>
+	bool Push<std::string>(const std::string& rhs_)
+	{
+		uint32_t len = rhs_.length();
+
+		if (size + len + sizeof(uint32_t) > capacity)
+		{
+			return false;
+		}
+
+		CopyMemory(data + size, &len, sizeof(uint32_t));
+		size += sizeof(uint32_t);
+
+		CopyMemory(data + size, rhs_.c_str(), len);
+		size += len;
+		return true;
+	}
+
+	/*
 	bool Push(uint16_t rhs_)
 	{
 		if (size + sizeof(rhs_) > capacity)
@@ -208,7 +257,7 @@ public:
 		CopyMemory(data + size, rhs_.c_str(), len);
 		size += len;
 		return true;
-	}
+	}*/
 
 	const char* GetData() const { return data; }
 	uint32_t GetSize() const { return size; }
@@ -251,6 +300,62 @@ public:
 		}
 	}
 
+	template <typename T>
+	typename std::enable_if<
+		std::is_same<T, uint16_t>::value ||
+		std::is_same<T, uint32_t>::value ||
+		std::is_same<T, uint64_t>::value ||
+		std::is_same<T, int16_t>::value ||
+		std::is_same<T, int32_t>::value ||
+		std::is_same<T, int64_t>::value ||
+		std::is_same<T, float>::value ||
+		std::is_same<T, double>::value ||
+		std::is_same<T, std::string>::value,
+		bool>::type
+		Get(T& rhs_)
+	{
+		if (GetRemainSize() < sizeof(rhs_))
+		{
+			return false;
+		}
+
+		CopyMemory(&rhs_, data + idx, sizeof(rhs_));
+		idx += sizeof(rhs_);
+		return true;
+	}
+
+	/// <summary>
+	/// 길이 부분을 미리 체크하고 역직렬화를 시도한다.
+	/// </summary>
+	/// <param name="rhs_"></param>
+	/// <returns></returns>
+	template<>
+	bool Get<std::string>(std::string& rhs_)
+	{
+		if (GetRemainSize() < sizeof(uint32_t))
+		{
+			return false;
+		}
+
+		uint32_t len{ 0 };
+
+		CopyMemory(&len, data + idx, sizeof(uint32_t));
+
+		if (len == 0 || len > MAX_STRING_SIZE || len + sizeof(uint32_t) > GetRemainSize())
+		{
+			return false;
+		}
+
+		idx += sizeof(uint32_t);
+
+		rhs_.resize(len);
+		CopyMemory(&(rhs_[0]), data + idx, len);
+		idx += len;
+
+		return true;
+	}
+
+	/*
 	bool Get(uint16_t& rhs_)
 	{
 		if (GetRemainSize() < sizeof(rhs_))
@@ -375,7 +480,7 @@ public:
 		idx += len;
 
 		return true;
-	}
+	}*/
 
 	uint32_t GetRemainSize() const { return size - idx; }
 
