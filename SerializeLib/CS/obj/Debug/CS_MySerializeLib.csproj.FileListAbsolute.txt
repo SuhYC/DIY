@@ -1,0 +1,7 @@
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\bin\Debug\CS_MySerializeLib.exe.config
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\bin\Debug\CS_MySerializeLib.exe
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\bin\Debug\CS_MySerializeLib.pdb
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\obj\Debug\CS_MySerializeLib.csproj.AssemblyReference.cache
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\obj\Debug\CS_MySerializeLib.csproj.CoreCompileInputs.cache
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\obj\Debug\CS_MySerializeLib.exe
+C:\Users\psyc\source\repos\CS_MySerializeLib\CS_MySerializeLib\obj\Debug\CS_MySerializeLib.pdb
