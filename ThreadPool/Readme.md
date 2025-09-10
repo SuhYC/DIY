@@ -534,7 +534,7 @@ int main() {
 for (int i = 0; i < MAX_JOB_COUNT; i++)
 {
     pool.Enqueue(jobs[i]);
-    std::this_thread::sleep_for(std::chrono::nanoseconds(250)); // 대충 초당 4천개의 작업만 요청되는 경우
+    std::this_thread::sleep_for(std::chrono::nanoseconds(250)); // 대충 밀리초당 4천개의 작업만 요청되는 경우
 }
 ```
 실제 서버를 가동해보면 클라이언트의 요청이 언제나 큐를 가득 메울정도로 있지 않을 것이다. <br/>
