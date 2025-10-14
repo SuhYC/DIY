@@ -8,6 +8,9 @@
 가장 간단한 구현 형식이며, 폴링 형태라고 봐도 무방. <br/>
 다른 실행흐름이 알려주지 않아도 일정시간마다 큐를 확인하는 구조이다. <br/>
 
+<details>
+<summary>코드 접기/펼치기</summary>
+
 ```cpp
 void Enqueue(Job* pJob) override
 {
@@ -38,6 +41,7 @@ void Thread()
     }
 }
 ```
+</details>
 
 #### 장점
 1. 구현이 간단하다 <br/>
@@ -53,6 +57,9 @@ void Thread()
 다만 해당 실험에서는 lock-free queue를 사용하기 때문에 락을 굳이 걸 필요는 당연히 없다. <br/>
 ```sleep_for```기반과 비교하면 그래도 다른 생산자역할을 하는 실행흐름에서 소비자실행흐름을 깨워줄 수 있다는 점. <br/>
 
+<details>
+<summary>코드 접기/펼치기</summary>
+    
 ```cpp
 void Enqueue(Job* pJob) override
 {
@@ -86,6 +93,7 @@ void Thread()
     }
 }
 ```
+</details>
 
 #### 장점
 1. 반환과 동시에 락을 획득한 상태이기 때문에 별도의 동기화 로직이 필요한 경우 유용하다.
@@ -98,6 +106,9 @@ void Thread()
 락 습득 없이 특정 원자 변수 값이 바뀌기를 기다릴 수 있는 방식. <br/>
 cv모델과 비슷하게 생산자/소비자 구조로 소비자 실행흐름을 깨워줄 수 있다. <br/>
 
+<details>
+<summary>코드 접기/펼치기</summary>
+   
 ```cpp
 void Enqueue(Job* pJob) override
 {
@@ -134,6 +145,7 @@ void Thread()
     }
 }
 ```
+</details>
 
 #### 장점
 1. 생산자 실행흐름이 소비자 실행흐름을 깨워줄 수 있다.
@@ -144,6 +156,10 @@ void Thread()
 2. 단일 원자 변수에 대해서만 wait가 가능하여 복잡한 조건식에는 불편할 수 있다.
 
 ## 전체 코드
+
+<details>
+<summary>코드 접기/펼치기</summary>
+   
 ```cpp
 #include <iostream>
 #include <chrono>
@@ -519,6 +535,7 @@ int main() {
 }
 
 ```
+</details>
 
 ## 수행결과
 ```sleep_for``` : 3584.91ms 소요 <br/>
