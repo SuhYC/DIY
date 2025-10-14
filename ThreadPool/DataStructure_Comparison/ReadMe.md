@@ -14,6 +14,9 @@
 이후 결과는 ms단위로 출력한다. <br/>
 
 # 각 테스트코드
+<details>
+<summary>접기/펼치기</summary>
+
 ### ```std::queue<T>``` <br/>
 ```cpp
 void TestQ(std::queue<int>& q)
@@ -222,6 +225,9 @@ void TestCPQ(Concurrency::concurrent_priority_queue<int>& q)
     return;
 }
 ```
+</details>
+
+
 
 # 실험결과
 ```std::queue<T>``` : 3505ms <br/>
@@ -237,6 +243,9 @@ void TestCPQ(Concurrency::concurrent_priority_queue<int>& q)
 특정 시점 이후에 동작해야할 함수가 아니라면, ```Concurrency::concurrent_queue<T>```에 넣는게 효율적이고, 오버헤드를 고려하고도 특정 시점에 수행되어야하는 동작에 한해서만 ```Concurrency::concurrent_priority_queue<T>```에 넣어서 처리하는 것이 좋겠다. <br/>
 
 # 전체코드
+<details>
+<summary>접기/펼치기</summary>
+
 ```cpp
 #include <iostream>
 #include <queue>
@@ -487,3 +496,6 @@ int main() {
     return 0;
 }
 ```
+
+</details>
+
