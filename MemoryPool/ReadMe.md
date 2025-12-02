@@ -369,6 +369,8 @@ private:
 </details>
 
 ## 결과
+
+<img src="https://github.com/SuhYC/DIY/blob/main/MemoryPool/result.png"><br/>
 1. 1307ms
 2. 1150ms
 3. 1983ms
